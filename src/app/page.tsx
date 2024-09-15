@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface ILoginForm {
   username: string;
@@ -32,7 +32,9 @@ export default function Home() {
       formData.username === validUser &&
       formData.password === validPassword
     ) {
-      setIsLoggedIn(true);
+      sessionStorage.setItem("isLoggedIn", "true");
+      sessionStorage.setItem("username", formData.username);
+      window.location.href = "/blogs";
       setError(null); // ล้างข้อความ error
     } else {
       setIsLoggedIn(false);
@@ -45,49 +47,45 @@ export default function Home() {
       <div className="col-md-3">
         <div className="card">
           <div className="card-header text-center">
-            <h4>{isLoggedIn ? "Welcome!" : "Login"}</h4>
+            <h4>Login</h4>
           </div>
           <div className="card-body">
-            {!isLoggedIn ? (
-              <form onSubmit={handleSubmit}>
-                <div className="mb-3">
-                  <label htmlFor="username" className="form-label">
-                    Username
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="username"
-                    name="username"
-                    placeholder="Enter username"
-                    value={formData.username}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="mb-3">
-                  <label htmlFor="password" className="form-label">
-                    Password
-                  </label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    id="password"
-                    name="password"
-                    placeholder="Enter password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                {error && <p className="text-danger">{error}</p>}
-                <button type="submit" className="btn btn-primary w-100">
-                  Login
-                </button>
-              </form>
-            ) : (
-              <p>You have successfully logged in!</p>
-            )}
+            <form onSubmit={handleSubmit}>
+              <div className="mb-3">
+                <label htmlFor="username" className="form-label">
+                  Username
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="username"
+                  name="username"
+                  placeholder="Enter username"
+                  value={formData.username}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="password" className="form-label">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="password"
+                  name="password"
+                  placeholder="Enter password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              {error && <p className="text-danger">{error}</p>}
+              <button type="submit" className="btn btn-primary w-100">
+                Login
+              </button>
+            </form>
           </div>
         </div>
       </div>
