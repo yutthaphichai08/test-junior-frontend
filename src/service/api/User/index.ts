@@ -16,8 +16,25 @@ const getAll = async () => {
   return res || [];
 };
 
+const getDetail = async (id: number) => {
+  const url = `http://localhost:3000/api/${PATH_NAME}/${id}`;
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! Status: ${response.status}`);
+  }
+  const res = await response.json();
+  return res || null;
+};
+
 const User = {
-    getAll,
+  getAll,
+  getDetail,
 };
 
 export default User;

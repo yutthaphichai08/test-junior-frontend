@@ -6,7 +6,7 @@ import User from "@/service/api/User";
 interface IUser {
   id: number;
   name: string;
-  detail: string;
+  description: string;
 }
 
 export default function Blogs() {
@@ -48,7 +48,7 @@ export default function Blogs() {
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">name</th>
-                  <th scope="col">detail</th>
+                  <th scope="col">description</th>
                 </tr>
               </thead>
               <tbody>
@@ -56,7 +56,7 @@ export default function Blogs() {
                   <tr key={user.id}>
                     <th scope="row">{user.id}</th>
                     <td>{user.name}</td>
-                    <td>{user.detail}</td>
+                    <td>{user.description}</td>
                   </tr>
                 ))}
               </tbody>
