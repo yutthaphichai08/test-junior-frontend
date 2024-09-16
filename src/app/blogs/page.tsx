@@ -39,17 +39,28 @@ export default function Blogs() {
 
   return (
     <>
-      <div>
+      <div className="container">
         {isLoggedIn ? (
           <>
-            <p>Welcome to the blogs page!</p>
-            <ul>
-              {users.map((user) => (
-                <li key={user.id}>
-                  {user.name}-{user.detail}
-                </li>
-              ))}
-            </ul>
+            <h1>Welcome to the blogs page!</h1>
+            <table className="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">name</th>
+                  <th scope="col">detail</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.map((user) => (
+                  <tr key={user.id}>
+                    <th scope="row">{user.id}</th>
+                    <td>{user.name}</td>
+                    <td>{user.detail}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </>
         ) : (
           <p>Redirecting to login...</p>

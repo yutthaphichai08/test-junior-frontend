@@ -12,4 +12,9 @@ export async function GET() {
   });
 }
 
-
+export async function POST() {
+  return NextResponse.json({
+    status: 400,
+    message: "service not found",
+  });
+}
