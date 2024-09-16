@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 interface ILoginForm {
   username: string;
@@ -12,7 +12,6 @@ export default function Home() {
     password: "",
   });
   const [error, setError] = useState<string | null>(null);
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   const validUser = process.env.NEXT_PUBLIC_VALID_USER || "";
   const validPassword = process.env.NEXT_PUBLIC_VALID_PASSWORD || "";
@@ -37,7 +36,6 @@ export default function Home() {
       window.location.href = "/blogs";
       setError(null); // ล้างข้อความ error
     } else {
-      setIsLoggedIn(false);
       setError("Invalid username or password");
     }
   };
