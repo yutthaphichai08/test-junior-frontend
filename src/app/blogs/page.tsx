@@ -72,12 +72,11 @@ export default function Blogs() {
 
   return (
     <div
-      className={`container`}
+      className={"container"}
       style={{
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column",
-        marginTop: "80px",
       }}
     >
       <div style={{ flex: 1 }}>
@@ -100,7 +99,7 @@ export default function Blogs() {
               <div className="row">
                 {paginatedUsers.map((item) => (
                   <CardComponent
-                    key={item.id} // เพิ่ม key สำหรับการทำซ้ำใน React
+                    key={item.id}
                     id={item.id}
                     image={item.image}
                     name={item.name}
