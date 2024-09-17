@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
 
 const NavbarComponent = () => {
   return (
