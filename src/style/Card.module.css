@@ -1,0 +1,27 @@
+.card {
+  height: 350px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cardTitle {
+  margin-bottom: 0.5rem;
+}
+
+.cardImage {
+  width: 500px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.cardText {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}

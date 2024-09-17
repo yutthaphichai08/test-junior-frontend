@@ -1,17 +1,27 @@
 "use client";
 
+import Link from "next/link";
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 
 const NavbarComponent = () => {
   return (
-    <Navbar className="navbar-fixed " bg="warning" variant="dark" expand="lg">
-      <Navbar.Brand href="#home">MyApp</Navbar.Brand>
+    <Navbar bg="dark" variant="dark" expand="lg">
+      <Navbar.Brand as={Link} href="/">
+        MyApp
+      </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#link">Link</Nav.Link>
+          <Nav.Link as={Link} href="/">
+            Home
+          </Nav.Link>
+          <Nav.Link as={Link} href="/about">
+            About
+          </Nav.Link>
+          <Nav.Link as={Link} href="/contact">
+            Contact
+          </Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

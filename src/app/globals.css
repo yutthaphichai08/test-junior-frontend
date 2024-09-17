@@ -1,17 +1,2 @@
 /* styles/globals.css */
-.card-img-top {
-  transition: filter 0.3s ease; /* เพิ่ม transition ให้การเปลี่ยนแปลง filter ลื่นไหล */
-  filter: grayscale(80%); /* เปลี่ยนภาพเป็นขาวดำ */
-}
 
-.card-img-top:hover {
-  filter: grayscale(0%); /* เปลี่ยนภาพเป็นสีเมื่อ hover */
-}
-
-.navbar-fixed {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-}

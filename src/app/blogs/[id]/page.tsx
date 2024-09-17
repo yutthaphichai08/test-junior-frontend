@@ -37,39 +37,26 @@ export default function BlogDetail({
   };
 
   return (
-    <>
-      <div className="container mt-5">
+    <div className="container mt-4">
+      {detail ? (
         <div className="row">
           <div className="col-md-6">
-            <h1 className="display-4">{detail?.name ?? "Default Name"}</h1>
-            <p className="lead">
-              {detail?.description ?? "Default description."}
-            </p>
+            <img
+              src={detail.image}
+              alt={detail.name}
+              className="img-fluid rounded"
+            />
           </div>
           <div className="col-md-6">
-            <div className="card">
-              <img
-                src={detail?.image ?? ""}
-                alt="description"
-                className="card-img-top"
-                style={{ width: "100%", height: "auto" }}
-              />
-              <div className="card-body">
-                <p
-                  className="card-text text-justify"
-                  style={{ lineHeight: "1.6   " }}
-                >
-                  <b>นครปฐม</b> เป็นจังหวัดหนึ่งในภาคกลางของประเทศไทย
-                  เป็นหนึ่งในห้าจังหวัดที่อยู่ในพื้นที่ปริมณฑลของกรุงเทพมหานคร
-                  จังหวัดนี้มีประวัติศาสตร์เก่าแก่ยาวนาน
-                  เชื่อว่าเป็นที่ตั้งเก่าแก่ของเมืองในสมัยทวารวดี
-                  โดยมีหลักฐานทางประวัติศาสตร์และโบราณคดีเป็นจำนวนมาก
-                </p>
-              </div>
-            </div>
+            <h1 className="mb-3">{detail.name}</h1>
+            <p>{detail.description}</p>
           </div>
         </div>
-      </div>
-    </>
+      ) : (
+        <div className="text-center">
+          <p>Loading...</p>
+        </div>
+      )}
+    </div>
   );
 }
