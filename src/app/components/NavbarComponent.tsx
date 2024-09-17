@@ -16,12 +16,6 @@ const NavbarComponent = () => {
           <Nav.Link as={Link} href="/">
             Home
           </Nav.Link>
-          <Nav.Link as={Link} href="/about">
-            About
-          </Nav.Link>
-          <Nav.Link as={Link} href="/contact">
-            Contact
-          </Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

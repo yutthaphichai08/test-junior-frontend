@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from "react";
 import User from "@/service/api/User";
-import styles from "@/style/Card.module.css";
+
 import PaginationComponent from "../components/PaginationComponent";
 import SearchComponent from "../components/SearchComponent";
 import CardComponent from "../components/CardComponent";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 interface IBlogs {
   id: number;
@@ -21,6 +22,7 @@ export default function Blogs() {
   const [blogs, setBlogs] = useState<IBlogs[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const loggedIn = sessionStorage.getItem("isLoggedIn");
@@ -38,10 +40,12 @@ export default function Blogs() {
 
   const fetchUsers = async () => {
     try {
-      const userData = await User.getAll();
-      setBlogs(userData.data);
+      const blogData = await User.getAll();
+      setBlogs(blogData.data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -68,13 +72,22 @@ export default function Blogs() {
 
   return (
     <div
-      className={`container mt-5`}
-      style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
+      className={`container`}
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        marginTop: "80px",
+      }}
     >
       <div style={{ flex: 1 }}>
-        {isLoggedIn ? (
+        {loading ? (
+          <LoadingSpinner />
+        ) : isLoggedIn ? (
           <>
-            <h1 className="mb-4">Welcome to the blogs page!</h1>
+            <div className="p-4">
+              <h1 className="text-center">Welcome to the web site!</h1>
+            </div>
             <SearchComponent
               searchTerm={searchTerm}
               onSearchChange={handleSearchChange}
@@ -87,6 +100,7 @@ export default function Blogs() {
               <div className="row">
                 {paginatedUsers.map((item) => (
                   <CardComponent
+                    key={item.id} // เพิ่ม key สำหรับการทำซ้ำใน React
                     id={item.id}
                     image={item.image}
                     name={item.name}

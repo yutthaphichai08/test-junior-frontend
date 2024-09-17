@@ -1,7 +1,7 @@
 "use client";
 
-import User from "@/service/api/User";
 import { useEffect, useState } from "react";
+import User from "@/service/api/User";
 
 interface IDetail {
   id: number;
@@ -37,7 +37,10 @@ export default function BlogDetail({
   };
 
   return (
-    <div className="container mt-4">
+    <div
+      className="container "
+      style={{ marginTop: "80px", minHeight: "90vh" }}
+    >
       {detail ? (
         <div className="row">
           <div className="col-md-6">
