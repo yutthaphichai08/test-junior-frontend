@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react";
 import User from "@/service/api/User";
+import styles from "@/style/Card.module.css";
 import PaginationComponent from "../components/PaginationComponent";
 import SearchComponent from "../components/SearchComponent";
-import UserCard from "../components/CardComponent";
+import CardComponent from "../components/CardComponent";
 
-interface IUser {
+interface IBlogs {
   id: number;
   name: string;
   description: string;
@@ -17,7 +18,7 @@ const PAGE_SIZE = 6; // Number of users per page
 
 export default function Blogs() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [blogs, setBlogs] = useState<IUser[]>([]);
+  const [blogs, setBlogs] = useState<IBlogs[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
 
@@ -66,7 +67,7 @@ export default function Blogs() {
   const totalPages = Math.ceil(filteredUsers.length / PAGE_SIZE);
 
   return (
-    <div className={`container mt-5`}>
+    <div className={` container mt-5`}>
       <div>
         {isLoggedIn ? (
           <>
@@ -80,20 +81,17 @@ export default function Blogs() {
                 <p>No results found for your search.</p>
               </div>
             ) : (
-              <>
-                <div className="row">
-                  {paginatedUsers.map((user) => (
-                    <UserCard
-                      key={user.id}
-                      id={user.id}
-                      name={user.name}
-                      description={user.description}
-                      image={user.image}
-                      onClick={handleCardClick}
-                    />
-                  ))}
-                </div>
-              </>
+              <div className="row">
+                {paginatedUsers.map((item) => (
+                  <CardComponent
+                    id={item.id}
+                    image={item.image}
+                    name={item.name}
+                    description={item.description}
+                    onClick={() => handleCardClick(item.id)}
+                  />
+                ))}
+              </div>
             )}
           </>
         ) : (
