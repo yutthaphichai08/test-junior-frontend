@@ -67,8 +67,11 @@ export default function Blogs() {
   const totalPages = Math.ceil(filteredUsers.length / PAGE_SIZE);
 
   return (
-    <div className={` container mt-5`}>
-      <div>
+    <div
+      className={`container mt-5`}
+      style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
+    >
+      <div style={{ flex: 1 }}>
         {isLoggedIn ? (
           <>
             <h1 className="mb-4">Welcome to the blogs page!</h1>
@@ -105,11 +108,22 @@ export default function Blogs() {
           margin: "20px 0px",
         }}
       >
-        <PaginationComponent
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={setCurrentPage}
-        />
+        {filteredUsers.length > 0 && (
+          <div
+            style={{
+              marginTop: "auto",
+              display: "flex",
+              justifyContent: "center",
+              margin: "20px 0px",
+            }}
+          >
+            <PaginationComponent
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={setCurrentPage}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
