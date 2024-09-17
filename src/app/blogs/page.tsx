@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import User from "@/service/api/User";
-import styles from "@/style/Card.module.css";
 import PaginationComponent from "../components/PaginationComponent";
 import SearchComponent from "../components/SearchComponent";
+import UserCard from "../components/CardComponent";
 
 interface IUser {
   id: number;
@@ -17,7 +17,7 @@ const PAGE_SIZE = 6; // Number of users per page
 
 export default function Blogs() {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [users, setUsers] = useState<IUser[]>([]);
+  const [blogs, setBlogs] = useState<IUser[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
 
@@ -38,7 +38,7 @@ export default function Blogs() {
   const fetchUsers = async () => {
     try {
       const userData = await User.getAll();
-      setUsers(userData.data);
+      setBlogs(userData.data);
     } catch (error) {
       console.log(error);
     }
@@ -54,10 +54,10 @@ export default function Blogs() {
   };
 
   // Filter and paginate users
-  const filteredUsers = users.filter(
-    (user) =>
-      user.name.toLowerCase().includes(searchTerm) ||
-      user.description.toLowerCase().includes(searchTerm)
+  const filteredUsers = blogs.filter(
+    (blog) =>
+      blog.name.toLowerCase().includes(searchTerm) ||
+      blog.description.toLowerCase().includes(searchTerm)
   );
 
   const startIndex = (currentPage - 1) * PAGE_SIZE;
@@ -66,7 +66,7 @@ export default function Blogs() {
   const totalPages = Math.ceil(filteredUsers.length / PAGE_SIZE);
 
   return (
-    <div className={` container mt-5`}>
+    <div className={`container mt-5`}>
       <div>
         {isLoggedIn ? (
           <>
@@ -83,40 +83,14 @@ export default function Blogs() {
               <>
                 <div className="row">
                   {paginatedUsers.map((user) => (
-                    <div
-                      className="col-md-4 mb-3 d-flex"
+                    <UserCard
                       key={user.id}
-                      onClick={() => handleCardClick(user.id)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      <div
-                        className={`${styles.card} card d-flex flex-column`}
-                        style={{ height: "100%" }}
-                      >
-                        <img
-                          src={
-                            user.image ??
-                            "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Example_image.svg/600px-Example_image.svg.png"
-                          }
-                          className={`${styles.cardImage} card-img-top img-fluid`}
-                          alt={user.name}
-                        />
-                        <div className="card-body d-flex flex-column">
-                          <h5 className={`${styles.cardTitle} card-title`}>
-                            {user.name}
-                          </h5>
-                          <p
-                            className={`${styles.cardText} card-text`}
-                            style={{
-                              WebkitLineClamp: 2,
-                              WebkitBoxOrient: "vertical",
-                            }}
-                          >
-                            {user.description}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
+                      id={user.id}
+                      name={user.name}
+                      description={user.description}
+                      image={user.image}
+                      onClick={handleCardClick}
+                    />
                   ))}
                 </div>
               </>
