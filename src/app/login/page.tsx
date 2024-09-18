@@ -32,7 +32,6 @@ export default function Login() {
       formData.password === validPassword
     ) {
       sessionStorage.setItem("isLoggedIn", "true");
-      sessionStorage.setItem("username", formData.username);
       window.location.href = "/blogs";
       setError(null); // ล้างข้อความ error
     } else {
