@@ -41,7 +41,7 @@ export default function BlogDetail({
   };
 
   return (
-    <div className="container" style={{ minHeight: "100vh" }}>
+    <div className="container p-5" style={{ minHeight: "100vh" }}>
       {loading ? (
         <LoadingSpinner />
       ) : (
