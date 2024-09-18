@@ -41,21 +41,32 @@ export default function BlogDetail({
   };
 
   return (
-    <div className="container " style={{ minHeight: "100vh" }}>
+    <div className="container" style={{ minHeight: "100vh" }}>
       {loading ? (
         <LoadingSpinner />
       ) : (
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-md-12 mb-4 d-flex justify-content-center">
             <img
               src={detail?.image}
               alt={detail?.name}
               className="img-fluid rounded"
+              style={{
+                maxWidth: "100%",
+                width: "600px",
+                height: "300px",
+                maxHeight: "400px",
+                objectFit: "cover",
+              }}
             />
           </div>
-          <div className="col-md-6">
-            <h1 className="mb-3">{detail?.name}</h1>
-            <p>{detail?.description}</p>
+          <div className="col-md-12 d-flex justify-content-center">
+            <div style={{ maxWidth: "660px" }}>
+              <h1 className="mb-3" style={{ textAlign: "center" }}>
+                {detail?.name}
+              </h1>
+              <p>{detail?.description}</p>
+            </div>
           </div>
         </div>
       )}
