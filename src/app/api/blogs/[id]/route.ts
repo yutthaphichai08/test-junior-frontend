@@ -20,12 +20,12 @@ export async function GET(
       );
     }
 
-    // Check if the user exists in the database
-    const userExists = await prisma.user.count({
+    // Check if the blog exists in the database
+    const blogExists = await prisma.user.count({
       where: { id },
     });
 
-    if (userExists === 0) {
+    if (blogExists === 0) {
       return NextResponse.json(
         {
           status: 404,
@@ -36,14 +36,14 @@ export async function GET(
     }
 
     // Fetch the user details
-    const user = await prisma.user.findUnique({
+    const blog = await prisma.user.findUnique({
       where: { id },
     });
 
     return NextResponse.json({
       status: 200,
       message: "Get user success",
-      data: user,
+      data: blog,
     });
   } catch (err) {
     console.log(err);

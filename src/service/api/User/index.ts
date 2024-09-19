@@ -1,4 +1,4 @@
-const PATH_NAME = "users";
+const PATH_NAME = "blogs";
 
 const getAll = async () => {
   const url = `http://localhost:3000/api/${PATH_NAME}`;
