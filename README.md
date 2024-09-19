@@ -23,7 +23,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 # Account for login
 
 ```bash
-ีusername: admin
+username: admin
 
 password: 1234
 ```
