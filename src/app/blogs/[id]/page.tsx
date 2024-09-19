@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import User from "@/service/api/User";
 import LoadingSpinner from "@/app/components/LoadingSpinner";
+import { checkLoggedInStatus } from "@/app/auth/auth";
 
 interface IDetail {
   id: number;
@@ -19,12 +20,21 @@ export default function BlogDetail({
   const paramId = params.id;
   const [detail, setDetail] = useState<IDetail | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const status = checkLoggedInStatus();
 
   useEffect(() => {
-    if (paramId) {
-      fetchData(paramId);
+    if (status) {
+      if (paramId) {
+        fetchData(paramId);
+      }
+    } else {
+      const redirectTimeout = setTimeout(() => {
+        window.location.href = "/";
+      }, 0);
+
+      return () => clearTimeout(redirectTimeout);
     }
-  }, [paramId]);
+  }, [status, paramId]);
 
   const fetchData = async (id: number | undefined) => {
     try {

@@ -7,7 +7,7 @@ import PaginationComponent from "../components/PaginationComponent";
 import SearchComponent from "../components/SearchComponent";
 import CardComponent from "../components/CardComponent";
 import LoadingSpinner from "../components/LoadingSpinner";
-
+import { checkLoggedInStatus } from "@/app/auth/auth";
 interface IBlogs {
   id: number;
   name: string;
@@ -25,8 +25,8 @@ export default function Blogs() {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const loggedIn = sessionStorage.getItem("isLoggedIn");
-    if (loggedIn === "true") {
+    const status = checkLoggedInStatus();
+    if (status) {
       setIsLoggedIn(true);
       fetchUsers();
     } else {
