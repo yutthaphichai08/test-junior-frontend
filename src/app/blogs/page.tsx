@@ -84,7 +84,7 @@ export default function Blogs() {
           <LoadingSpinner />
         ) : isLoggedIn ? (
           <>
-            <div className="p-5">
+            <div className="p-3">
               <h1 className="text-center">Welcome to the web site!</h1>
             </div>
             <SearchComponent
