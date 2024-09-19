@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Swal from "sweetalert2";
 
 interface ILoginForm {
   username: string;
@@ -32,9 +33,20 @@ export default function Login() {
       formData.password === validPassword
     ) {
       sessionStorage.setItem("isLoggedIn", "true");
-      window.location.href = "/blogs";
+      Swal.fire({
+        title: "Login Successful",
+        text: "Redirecting to your website...",
+        icon: "success",
+      }).then(() => {
+        window.location.href = "/blogs";
+      });
       setError(null); // ล้างข้อความ error
     } else {
+      Swal.fire({
+        title: "Login False",
+        text: "Invalid username or password",
+        icon: "error",
+      });
       setError("Invalid username or password");
     }
   };
