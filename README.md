@@ -1,3 +1,19 @@
+# Test: React JS
+
+## Technologies Used
+
+- **Next.js** with **TypeScript**: For web application development.
+- **SQLite**: As the database.
+- **Prisma Studio**: For ORM (Object-Relational Mapping) management.
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yutthaphichai08/test-junior-frontend.git
+   cd test-junior-frontend
+   ```
+
 ## Getting Started
 
 First step: Install the package:
