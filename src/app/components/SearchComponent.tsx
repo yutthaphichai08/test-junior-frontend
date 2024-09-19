@@ -14,7 +14,7 @@ const SearchComponent: React.FC<SearchComponentProps> = ({
       <input
         type="text"
         className="form-control"
-        placeholder="Search users..."
+        placeholder="Search blogs..."
         value={searchTerm}
         onChange={(e) => onSearchChange(e.target.value)}
       />
