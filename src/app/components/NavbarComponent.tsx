@@ -19,11 +19,7 @@ const NavbarComponent = () => {
 
     if (result.isConfirmed) {
       sessionStorage.clear();
-      Swal.fire("Logged Out!", "You have been logged out.", "success").then(
-        () => {
-          window.location.href = "/";
-        }
-      );
+      window.location.href = "/";
     }
   };
 
